@@ -9,11 +9,10 @@ thread_lock = Lock()
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'votes'
 socketio = SocketIO(app, cors_allowed_origins='*')
-ser = serial.Serial(port='/dev/cu.usbserial-0001', baudrate=9600)
+ser = serial.Serial(port='COM5', baudrate=9600)
 
 
 def background_thread():
-    print("Generating random sensor values")
     while True:
         dummy_sensor_value = ser.readline().decode('UTF-8').strip()
         print(dummy_sensor_value)
