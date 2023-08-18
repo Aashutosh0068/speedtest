@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 from flask_socketio import SocketIO
 from threading import Lock
 import serial
+import time
 
 thread = None
 thread_lock = Lock()
@@ -20,6 +21,7 @@ def background_thread():
           socketio.emit('updateSensorData', {'value': dummy_sensor_value})
         except serial.SerialTimeoutException:
             pass
+        time.sleep(0.01)
 
 @app.route('/')
 def index():
