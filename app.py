@@ -14,9 +14,10 @@ ser = serial.Serial(port='COM5', baudrate=9600)
 
 def background_thread():
     while True:
-        dummy_sensor_value = ser.readline().decode('UTF-8').strip()
-        print(dummy_sensor_value)
-        socketio.emit('updateSensorData', {'value': dummy_sensor_value})
+        if ser.in_waiting > 0 :
+          dummy_sensor_value = ser.readline().decode('UTF-8').strip()
+          print(dummy_sensor_value)
+          socketio.emit('updateSensorData', {'value': dummy_sensor_value})
 
 
 @app.route('/')
