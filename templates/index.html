@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script>
+      socket = io();
+      socket.connect("http://localhost:5000/");
+      socket.on("updateSensorData", function (msg) {
+        const dats = msg.value.split(",");
+        data.innerHTML = dats[0];
+        data1.innerHTML = dats[1];
+        data2.innerHTML = dats[2];
+        data3.innerHTML = dats[3];
+        data4.innerHTML = dats[4];
+      });
+    </script>
+    <style>
+      body {
+        font-family: Avenir;
+        margin: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    Candidate1 - <span id="data"></span> votes<br />
+    Candidate2 - <span id="data1"></span> votes<br />
+    Candidate3 - <span id="data2"></span> votes<br />
+    Candidate4 - <span id="data3"></span> votes<br />
+    Candidate5 - <span id="data4"></span> votes<br />
+  </body>
+</html>
