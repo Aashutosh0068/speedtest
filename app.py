@@ -14,11 +14,12 @@ ser = serial.Serial(port='COM5', baudrate=9600)
 
 def background_thread():
     while True:
-        if ser.in_waiting > 0 :
+        try :
           dummy_sensor_value = ser.readline().decode('UTF-8').strip()
           print(dummy_sensor_value)
           socketio.emit('updateSensorData', {'value': dummy_sensor_value})
-
+        except serial.SerialTimeoutException:
+            pass
 
 @app.route('/')
 def index():
