@@ -10,7 +10,7 @@ thread_lock = Lock()
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'votes'
 socketio = SocketIO(app, cors_allowed_origins='*')
-ser = serial.Serial(port='COM5', baudrate=9600)
+ser = serial.Serial(port='/dev/cu.usbmodem14101', baudrate=9600)
 
 
 def background_thread():
