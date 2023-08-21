@@ -21,7 +21,7 @@ def background_thread():
           socketio.emit('updateSensorData', {'value': dummy_sensor_value})
         except serial.SerialTimeoutException:
             pass
-        time.sleep(0.01)
+        time.sleep(0.05)
 
 @app.route('/')
 def index():
